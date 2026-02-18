@@ -21,8 +21,10 @@ jobs:
         run: pip install httpx pandas
 
       - name: Executar script
-        env:
-          EMAIL_USER: ${{ secrets.EMAIL_USER }}
-          EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
-          EMAIL_DESTINY: ${{ secrets.EMAIL_DESTINY }}
-        run: python serving/monitor_dou.py
+              env:
+                EMAIL_USER: ${{ secrets.EMAIL_USER }}
+                EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
+                EMAIL_DESTINY: ${{ secrets.EMAIL_DESTINY }}
+              run: |
+                SCRIPT_PATH=$(find . -name "monitor_dou.py" -not -path "*/.*")
+                python $SCRIPT_PATH
