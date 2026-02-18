@@ -1,0 +1,28 @@
+name: Monitor Semanal DOU
+
+on:
+  schedule:
+    - cron: '0 11 * * 1' # Roda toda segunda (11:00 UTC = 08:00 Brasília)
+  workflow_dispatch: # Permite rodar manualmente pelo site do GitHub
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v3
+
+      - name: Configurar Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11' # Versão estável para o ambiente Linux do GitHub
+
+      - name: Instalar dependências
+        run: pip install httpx pandas
+
+      - name: Executar script
+        env:
+          EMAIL_USER: ${{ secrets.EMAIL_USER }}
+          EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
+          EMAIL_DESTINY: ${{ secrets.EMAIL_DESTINY }}
+        run: python serving/monitor_dou.py

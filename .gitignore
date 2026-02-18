@@ -1,0 +1,23 @@
+# Ambiente Virtual (O mais importante)
+venv/
+venv_dou/
+env/
+.env
+
+# Arquivos de Cache do Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Arquivos de dados gerados localmente (para não lotar o Git)
+*.csv
+*.xlsx
+*.log
+
+# Pastas de IDEs
+.vscode/
+.idea/
+
+# Arquivos do sistema
+Thumbs.db
+.DS_Store
